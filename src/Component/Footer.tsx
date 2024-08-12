@@ -1,5 +1,8 @@
 import { Box, Link, Typography } from '@mui/material';
 
+
+
+// the footer link
 const Footer = () => {
     return (
         <Box
