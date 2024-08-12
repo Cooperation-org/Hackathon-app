@@ -11,7 +11,6 @@ import { Toolbar, Typography, IconButton } from '@mui/material';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 
 const drawerWidth = 240; 
-// this is the side bar
 const Array1 = [
     { text: "Dashboard", icon: <SensorOccupiedOutlinedIcon />, path: "/" },
     { text: "Candidates", icon: <SensorOccupiedOutlinedIcon />, path: "/team" },
