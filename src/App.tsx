@@ -1,22 +1,7 @@
-
-
 import HomePage from './Component/HomePage'
 
-
 function App() {
-
-  return (
-
-
-
-
-
-
-
-    <HomePage />
-
-
-  )
+  return <HomePage />
 }
 
 export default App
