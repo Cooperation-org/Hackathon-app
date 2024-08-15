@@ -1,9 +1,8 @@
-import HomePage from './Component/HomePage'
-// import { Signup } from './Component/Signup'
+// import Sidebar from './Component/Sidebar'
+import Dashboard from './page/Dashboard'
 
 function App() {
-  return <HomePage />
-  // return <Signup />;
+  return <Dashboard />
 }
 
 export default App
