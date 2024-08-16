@@ -5,11 +5,10 @@ const Footer = () => {
   return (
     <Box
       sx={{
-        // width: "214px",
         height: '19px',
         position: 'absolute',
         bottom: '40px',
-        left: '200px'
+        left: '20%'
       }}
     >
       <Typography

@@ -15,7 +15,7 @@ import {
 import LockOutlined from '@mui/icons-material/LockOutlined'
 import { styled } from '@mui/material/styles'
 
-const SignUpContainer = styled(Container)(({ theme }) => ({
+const LoginContainer = styled(Container)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
@@ -27,7 +27,7 @@ const SignUpContainer = styled(Container)(({ theme }) => ({
   height: '100vh'
 }))
 
-const SignUpBox = styled(Box)(({ theme }) => ({
+const LoginBox = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
@@ -42,15 +42,15 @@ const SignUpBox = styled(Box)(({ theme }) => ({
   overflowY: 'scroll'
 }))
 
-const SignUpField = styled(Box)(() => ({
-  height: '72px',
+const LoginField = styled(Box)(() => ({
+  height: '75px',
   width: '540px',
   display: 'flex',
   flexDirection: 'column',
   marginBottom: '20px'
 }))
 
-const SignUpButton = styled(Button)(({ theme }) => ({
+const LoginButton = styled(Button)(({ theme }) => ({
   marginTop: theme.spacing(3),
   marginBottom: theme.spacing(2),
   background: 'linear-gradient(278.02deg, #E166FF 0%, #B504E1 49.22%)',
@@ -78,21 +78,13 @@ const LabelTypography = styled(Typography)(({ theme }) => ({
   alignSelf: 'flex-start'
 }))
 
-export const SignUpForm = () => {
-  const [fullName, setFullName] = useState('')
+export const LoginForm = () => {
   const [walletAddress, setWalletAddress] = useState('')
-  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
   const handlePasswordVisibility = () => {
     setShowPassword(!showPassword)
-  }
-
-  const handleConfirmPasswordVisibility = () => {
-    setShowConfirmPassword(!showConfirmPassword)
   }
 
   const handleSubmit = (event: React.FormEvent) => {
@@ -101,10 +93,10 @@ export const SignUpForm = () => {
   }
 
   return (
-    <SignUpContainer maxWidth={false}>
-      <SignUpBox>
+    <LoginContainer maxWidth={false}>
+      <LoginBox>
         <Typography component='h1' variant='h4' sx={{ color: '#fff', fontWeight: 'bold' }}>
-          Create Your Voting Account
+          Login To Your Account
         </Typography>
         <Typography
           component='p'
@@ -115,36 +107,13 @@ export const SignUpForm = () => {
             textAlign: 'center'
           }}
         >
-          By creating an account, you’ll be able to cast your vote, receive important election updates.
+          By signing into your account, you’re granted access to cast your vote.
         </Typography>
         <Box component='form' onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-          <SignUpField>
-            <LabelTypography>Full Name</LabelTypography>
-            <TextField
-              required
-              fullWidth
-              sx={{ marginBottom: '15px', marginTop: '-5px' }}
-              id='fullName'
-              name='fullName'
-              autoComplete='name'
-              autoFocus
-              placeholder='Enter fullname'
-              value={fullName}
-              onChange={e => setFullName(e.target.value)}
-              InputProps={{
-                style: {
-                  color: '#fff',
-                  border: '1px solid grey',
-                  borderRadius: '10px',
-                  height: '40px'
-                }
-              }}
-            />
-          </SignUpField>
-          <SignUpField>
+          <LoginField>
             <LabelTypography>Wallet Address</LabelTypography>
             <TextField
-              sx={{ marginBottom: '15px', marginTop: '-5px' }}
+              sx={{ marginBottom: '15px', marginTop: '0px' }}
               required
               fullWidth
               id='walletAddress'
@@ -162,33 +131,12 @@ export const SignUpForm = () => {
                 }
               }}
             />
-          </SignUpField>
-          <SignUpField>
-            <LabelTypography>Email Address</LabelTypography>
-            <TextField
-              sx={{ marginBottom: '15px', marginTop: '-5px' }}
-              required
-              fullWidth
-              id='email'
-              name='email'
-              autoComplete='email'
-              value={email}
-              placeholder='Enter email address'
-              onChange={e => setEmail(e.target.value)}
-              InputProps={{
-                style: {
-                  color: '#fff',
-                  border: '1px solid grey',
-                  borderRadius: '10px',
-                  height: '40px'
-                }
-              }}
-            />
-          </SignUpField>
-          <SignUpField>
+          </LoginField>
+
+          <LoginField>
             <LabelTypography>Password</LabelTypography>
             <TextField
-              sx={{ marginBottom: '15px', marginTop: '-5px' }}
+              sx={{ marginBottom: '15px', marginTop: '0px' }}
               required
               fullWidth
               name='password'
@@ -219,43 +167,10 @@ export const SignUpForm = () => {
                 )
               }}
             />
-          </SignUpField>
-          <LabelTypography>Confirm Password</LabelTypography>
-          <TextField
-            sx={{ marginBottom: '15px', marginTop: '-5px' }}
-            required
-            fullWidth
-            name='confirmPassword'
-            type={showConfirmPassword ? 'text' : 'password'}
-            id='confirmPassword'
-            autoComplete='current-password'
-            value={confirmPassword}
-            placeholder='Renter password'
-            onChange={e => setConfirmPassword(e.target.value)}
-            InputProps={{
-              style: {
-                color: '#fff',
-                border: '1px solid grey',
-                borderRadius: '10px',
-                height: '40px'
-              },
-              endAdornment: (
-                <InputAdornment position='end'>
-                  <IconButton
-                    sx={{ color: 'white' }}
-                    aria-label='toggle password visibility'
-                    onClick={handleConfirmPasswordVisibility}
-                    edge='end'
-                  >
-                    <LockOutlined />
-                  </IconButton>
-                </InputAdornment>
-              )
-            }}
-          />
-          <SignUpButton type='submit' fullWidth variant='contained'>
-            Register
-          </SignUpButton>
+          </LoginField>
+          <LoginButton type='submit' fullWidth variant='contained'>
+            Login
+          </LoginButton>
           <Box
             sx={{
               display: 'flex',
@@ -294,14 +209,14 @@ export const SignUpForm = () => {
                 letterSpacing: '0.02em'
               }}
             >
-              Already have an account?{' '}
-              <Link href='/login' sx={{ color: 'rgba(231, 134, 255, 1)' }} underline='always'>
-                Login
+              Yet to create a voting account?{' '}
+              <Link href='/signup' sx={{ color: 'rgba(231, 134, 255, 1)' }} underline='always'>
+                Create an account
               </Link>
             </Typography>
           </Grid>
         </Box>
-      </SignUpBox>
+      </LoginBox>
       <Paper
         sx={{
           position: 'absolute',
@@ -315,6 +230,6 @@ export const SignUpForm = () => {
         }}
         elevation={3}
       />
-    </SignUpContainer>
+    </LoginContainer>
   )
 }

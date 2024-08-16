@@ -5,20 +5,19 @@ function Navbar() {
     <AppBar
       sx={{
         alignSelf: 'stretch',
-        position: 'relative',
+        position: 'absolute',
+        left: '20%',
+        top: 30,
         borderRadius: '20px',
-        background: 'rgba(255, 255, 255, 0.2)',
+        background: 'linear-gradient(to right, #2A004B, #551062, #822c7b, #a2498e, #BF67AE, #A249A2)',
         border: '1px solid rgba(255, 255, 255, 0.8)',
         overflow: 'hidden',
-
         boxShadow: 'none',
         backdropFilter: 'blur(24px)',
         padding: '9px 20px',
-        width: '72.222vw',
-        maxWidth: '1040px',
+        width: '55vw',
         minWidth: '620px',
         height: '80px',
-        marginTop: '25px',
         boxSizing: 'border-box',
         letterSpacing: '0.02em',
         fontWeight: 500
