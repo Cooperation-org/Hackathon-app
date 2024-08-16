@@ -83,8 +83,7 @@ export default function ResponsiveDrawer() {
         justifyContent: 'space-between',
         p: 2,
         width: '28.75vw',
-        maxWidth: '414px',
-        maxHeight: '1066PX'
+        maxWidth: '414px'
       }}
     >
       <Box>
@@ -207,7 +206,6 @@ export default function ResponsiveDrawer() {
               color: 'rgba(255, 255, 255, 1)',
               width: '28.75vw',
               maxWidth: '414px',
-              height: '1066px',
               borderRight: '2px solid rgba(255, 255, 255, 0.2)',
               padding: '20px',
               display: 'flex',

@@ -1,5 +1,6 @@
 import { Box } from '@mui/material'
 import Sidebar from '../Component/Sidebar'
+import { CandidatePage } from '../Component/CandidatePage'
 
 function Dashboard() {
   return (
@@ -16,6 +17,7 @@ function Dashboard() {
       }}
     >
       <Sidebar />
+      <CandidatePage />
     </Box>
   )
 }
