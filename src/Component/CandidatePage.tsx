@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useState } from 'react'
 import {
   Box,
   Container,
@@ -61,21 +62,18 @@ const CandidateRow = styled(TableRow)({
   }
 })
 
-// @TODO: Update to state variable when API is ready
-const totalTableRows = 50
-const rowsPerPage = 10
-
 export const CandidatePage = () => {
   const navigate = useNavigate()
 
   const [sortBy, setSortBy] = useState('President')
   const [page, setPage] = useState(1)
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleSortChange = (event: any) => {
     setSortBy(event.target.value)
   }
 
-  const handlePageChange = (event: React.ChangeEvent<unknown>, value: number) => {
+  const handlePageChange = (_event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value)
   }
 
@@ -136,6 +134,7 @@ export const CandidatePage = () => {
           </Paper>
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'baseline' }}>
             <Button
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               onClick={(event: any) => handlePageChange(event, page - 1)}
               disabled={page === 0}
               variant='contained'
