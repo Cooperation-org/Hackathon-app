@@ -11,15 +11,16 @@ import { Toolbar, Typography, IconButton, styled, InputBase, AppBar, Avatar } fr
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined'
 import SearchIcon from '@mui/icons-material/Search'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
+import { useNavigate } from 'react-router-dom'
 const drawerWidth = 240
 
 const Array1 = [
-  { text: 'Dashboard', icon: <SensorOccupiedOutlinedIcon />, path: '/' },
-  { text: 'Candidates', icon: <SensorOccupiedOutlinedIcon />, path: '/team' },
+  { text: 'Dashboard', icon: <SensorOccupiedOutlinedIcon />, path: '/dashboard' },
+  { text: 'Candidates', icon: <SensorOccupiedOutlinedIcon />, path: '/candidates' },
   {
     text: 'Election Result',
     icon: <SensorOccupiedOutlinedIcon />,
-    path: '/contacts'
+    path: '/electionResults'
   }
 ]
 
@@ -74,20 +75,18 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }))
 
 export default function ResponsiveDrawer() {
+  const navigate = useNavigate()
+
   const drawer = (
     <Box
       sx={{
         display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        p: 2
-
-        // maxHeight: '1066px'
+        flexDirection: 'column'
       }}
     >
       <Box>
         <Toolbar />
-        <Box sx={{ display: 'flex', justifyContent: 'center', ml: '2.986vw' }}>
+        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
           <Typography
             sx={{
               fontFamily: 'Inter',
@@ -101,17 +100,13 @@ export default function ResponsiveDrawer() {
         </Box>
         <Box
           sx={{
-            display: 'flex',
-
-            borderRadius: '8px',
-            mt: '20px',
-            ml: '10.069vw'
+            display: 'flex'
           }}
         >
-          <List>
+          <List style={{ marginTop: '20px' }}>
             {Array1.map(item => (
               <ListItem key={item.path} disablePadding>
-                <ListItemButton>
+                <ListItemButton style={{ marginLeft: '75%' }} onClick={() => navigate(item.path)}>
                   <ListItemIcon sx={{ color: 'rgba(255, 255, 255, 1)' }}>{item.icon}</ListItemIcon>
                   <ListItemText primary={item.text} primaryTypographyProps={{}} />
                 </ListItemButton>
@@ -135,7 +130,6 @@ export default function ResponsiveDrawer() {
               boxSizing: 'border-box',
               background: 'linear-gradient(to bottom, rgba(25, 0, 32, 1), rgba(50, 0, 64, 1))',
               color: 'rgba(255, 255, 255, 1)',
-
               borderRight: '2px solid rgba(255, 255, 255, 0.2)',
               padding: '20px',
               display: 'flex',
@@ -143,15 +137,13 @@ export default function ResponsiveDrawer() {
               justifyContent: 'space-between',
               minWidth: '100px',
               p: 2,
-              width: '28.75vw',
-              maxWidth: '414px',
-              height: '78.672vh'
-              // maxHeight: '1066px',
+              width: 'calc(100vw - 80%)'
             }
           }}
           open
         >
           {drawer}
+
           <Typography
             sx={{
               color: 'rgba(255, 78, 78, 1)',
@@ -160,11 +152,12 @@ export default function ResponsiveDrawer() {
               fontFamily: 'inter',
               textAlign: 'center'
             }}
+            onClick={() => navigate('/login')}
           >
             <IconButton>
               <LogoutOutlinedIcon sx={{ color: 'rgba(255, 78, 78, 1)' }} />
             </IconButton>
-            Log out
+            Logout
           </Typography>
         </Drawer>
       </Box>
@@ -202,10 +195,9 @@ export default function ResponsiveDrawer() {
               position: 'absolute',
               top: '80%',
               left: '50%',
-              hight: '4.69vh',
+              height: '4.69vh',
               maxHeight: '560px',
               width: '15vw',
-
               gap: '10px'
             }}
           >

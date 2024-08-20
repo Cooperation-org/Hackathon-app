@@ -1,19 +1,45 @@
-import Sidebar from './Component/Sidebar'
-import About from './page/About'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { Login } from './Component/Login'
+import { Signup } from './page/Signup'
+import HomePage from './page/HomePage'
+import Dashboard from './page/Dashboard'
+import { CandidatePage } from './Component/CandidatePage'
+import { CandidateDetails } from './page/CandidateDetails'
+import { ElectionResults } from './page/ElectionResults'
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <HomePage />
+  },
+  {
+    path: '/login',
+    element: <Login />
+  },
+  {
+    path: '/signup',
+    element: <Signup />
+  },
+  {
+    path: '/dashboard',
+    element: <Dashboard />
+  },
+  {
+    path: '/candidates',
+    element: <CandidatePage />
+  },
+  {
+    path: '/candidates/:id',
+    element: <CandidateDetails />
+  },
+  {
+    path: '/electionResults',
+    element: <ElectionResults />
+  }
+])
 
 function App() {
-  return (
-    <>
-      <Sidebar />
-      <About
-        num={44444}
-        path={
-          'https://s3-alpha-sig.figma.com/img/3dfa/a8ed/c7211dcc2f9d86fa262b7190aa7252a8?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ZAULKaUADxb9mF0jMVVvx0WAtPKLc6daok~3sEW-EtSbGg278r-Dsl8bvXlyXx9mGOp~O3M2Vxl5dFzOFRx-hia5KRBoEZa0Qn4C4f~6WdlKGzgCAqo3xkSfh93p9mMN8SpqnrJD2WWg50rNZ9iZWTxe3qRm078Z77QbnVV7kDouS2Zm0WEom2ZsadkjyuK6feItoSvpG7hB-5fbobrJIgY3htd4KI5bHfk~TYw7gKKHuZvC90j1vwClgP3Tzw1yOj~vzMDTVz9ZX8KTd8WXfBbHMlG66~9QNKyQo-socp7MMrUOGbjSOAjrR-zrFeXlLAEoXFHy2qtsw-OXuUxN-A__'
-        }
-        name={'MOka'}
-      />
-    </>
-  )
+  return <RouterProvider router={router} />
 }
 
 export default App
