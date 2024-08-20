@@ -1,6 +1,8 @@
 import { AppBar, Box, Button, Link, Toolbar, Typography } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 
 function Navbar() {
+  const navigate = useNavigate()
   return (
     <AppBar
       sx={{
@@ -46,7 +48,7 @@ function Navbar() {
           }}
         >
           <Link
-            href='#'
+            href='/candidates'
             underline='none'
             sx={{
               width: '100px',
@@ -62,7 +64,7 @@ function Navbar() {
             Candidates
           </Link>
           <Link
-            href='#'
+            href='/electionResults'
             underline='none'
             sx={{
               width: '150px',
@@ -77,6 +79,7 @@ function Navbar() {
             Election Results
           </Link>
           <Button
+            onClick={() => navigate('/login')}
             variant='contained'
             sx={{
               borderRadius: '8px',

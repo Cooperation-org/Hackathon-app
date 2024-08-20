@@ -2,29 +2,19 @@ import { Box, Button, Card, CardContent, CardMedia, Link, Typography } from '@mu
 
 function About({ num, path, name }: { num: number; path: string; name: string }) {
   return (
-    <Box sx={{ display: 'flex', width: '100vw', alignItems: 'center', justifyContent: 'center' }}>
-      {/* the first Box */}
+    <Box sx={{ display: 'flex', flexDirection: 'column', ml: '20%', gap: '60px' }}>
       <Box
         sx={{
           display: 'flex',
-          justifyContent: 'space-between',
+          justifyContent: 'space-evenly',
           alignItems: 'center',
-          maxWidth: '716px',
-          width: ' 49.583vw',
-          hight: '15.009vh',
-          mt: '160px',
-          ml: '324px'
+          marginTop: '30px'
         }}
       >
-        {/* image box */}
         <Card
           sx={{
-            maxWidth: 500,
-            maxHeight: 353,
             backgroundColor: 'rgba(14, 1, 30, 1)',
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center'
+            display: 'flex'
           }}
         >
           <CardMedia
@@ -32,13 +22,13 @@ function About({ num, path, name }: { num: number; path: string; name: string })
             alt='green iguana'
             height='160'
             image={path}
-            width='160'
             sx={{ borderRadius: ' 10px 10px 0 0', mr: '10px' }}
           />
           <CardContent
+            style={{
+              paddingBottom: '10px'
+            }}
             sx={{
-              width: '118px',
-              height: '148px', // I corrected 'high' to 'height'
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'space-between'
@@ -48,48 +38,34 @@ function About({ num, path, name }: { num: number; path: string; name: string })
               variant='h5'
               component='div'
               sx={{
-                width: '168px', // Fixed width
-                height: '20px', // Fixed height
-                fontFamily: 'Poppins, sans-serif', // Font family
-                fontWeight: 400, // Font weight
-                fontSize: '30px', // Font size
-                lineHeight: '20px', // Line height
-                textAlign: 'center', // Text alignment
-                color: 'rgba(255, 255, 255, 1)', // Text color
-                display: 'flex', // Flexbox for alignment
-                alignItems: 'flex-start',
-                m: '30px 10px 0px 0px'
+                color: 'rgba(255, 255, 255, 1)'
               }}
             >
               {name}
             </Typography>
 
-            <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                width: '130px',
+                gap: '12px'
+              }}
+            >
               <Typography
                 sx={{
-                  fontFamily: 'Inter, sans-serif', // Font family
-                  fontWeight: 400, // Font weight (regular)
-                  fontSize: '16px', // Font size
-                  lineHeight: '19.36px', // Line height
-                  letterSpacing: '0.02em', // 2% letter spacing
-                  color: 'rgba(231, 134, 255, 1)', // Text color
-                  backgroundColor: '#34500',
-                  textAlign: 'center',
-                  width: '97px'
+                  fontWeight: 400,
+                  fontSize: '16px',
+                  color: 'rgba(231, 134, 255, 1)'
                 }}
               >
                 {`# ${num}`}
               </Typography>
               <Typography
                 sx={{
-                  fontFamily: 'Poppins, sans-serif', // Font family
-                  fontWeight: 300, // Font weight
                   fontStyle: 'italic', // Italic style
                   fontSize: '12px', // Font size
-                  lineHeight: '20px', // Line height
-                  textAlign: 'center', // Center alignment
-                  color: 'rgba(255, 255, 255, 1)',
-                  mt: '4px' // Margin top for spacing
+                  color: 'rgba(255, 255, 255, 1)'
                 }}
               >
                 VOTES
@@ -101,17 +77,11 @@ function About({ num, path, name }: { num: number; path: string; name: string })
           <Button
             sx={{
               color: 'rgba(255, 255, 255, 1)',
-              width: '200px', // Fixed width
-              height: '36px', // Fixed height
+              width: '200px',
+              height: '36px',
               borderRadius: '8px', // Rounded corners
               border: '2px solid', // 2px border
-              padding: '11px 56px', // Padding on all sides
-              gap: '10px', // Gap between child elements
-              opacity: 0.3, // 30% opacity
               background: 'linear-gradient(90deg, rgba(225, 102, 255, 1) 0%, rgba(181, 4, 225, 1) 100%)', // Linear gradient background
-              display: 'flex', // Flexbox for child alignment
-              justifyContent: 'center', // Horizontal alignment
-              alignItems: 'center', // Vertical alignment
               mt: '114px'
             }}
           >
@@ -123,14 +93,11 @@ function About({ num, path, name }: { num: number; path: string; name: string })
       {/* the sec Box */}
       <Box
         sx={{
-          width: '716px', // Fixed width of 716px
-          height: '854px', // Hug height of 854px
-          position: 'absolute', // Assuming top and left positions are relative to the nearest positioned ancestor
-          top: '388px', // Position from the top
-          left: '524px', // Position from the left
-          gap: '10px', // Gap between child elements if it's a flexbox or grid container
-          display: 'flex', // Assuming flexbox to apply gap between child elements
-          flexDirection: 'column' // Assuming column direction for flexbox
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-evenly',
+          ml: '25%',
+          gap: '24px'
         }}
       >
         <Box sx={{ display: 'flex', flexDirection: 'row' }}>
@@ -260,7 +227,6 @@ function About({ num, path, name }: { num: number; path: string; name: string })
             </Button>
           </Box>
         </Box>
-        {/* button container */}
       </Box>
     </Box>
   )

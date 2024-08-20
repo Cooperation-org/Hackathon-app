@@ -3,7 +3,6 @@ import {
   Box,
   Container,
   Typography,
-  TextField,
   MenuItem,
   Select,
   Button,
@@ -15,10 +14,13 @@ import {
   TableHead,
   TableRow,
   Paper,
-  Pagination,
-  SelectChangeEvent
+  Pagination
 } from '@mui/material'
 import { styled } from '@mui/system'
+
+import Sidebar from './Sidebar'
+import { useNavigate } from 'react-router-dom'
+import { candidates } from '../mockData'
 
 const CandidateContainer = styled(Container)({
   display: 'flex',
@@ -64,10 +66,12 @@ const totalTableRows = 50
 const rowsPerPage = 10
 
 export const CandidatePage = () => {
+  const navigate = useNavigate()
+
   const [sortBy, setSortBy] = useState('President')
   const [page, setPage] = useState(1)
 
-  const handleSortChange = (event: SelectChangeEvent) => {
+  const handleSortChange = (event: any) => {
     setSortBy(event.target.value)
   }
 
@@ -76,94 +80,101 @@ export const CandidatePage = () => {
   }
 
   return (
-    <CandidateContainer>
-      <MainContent>
-        <Box display='flex' justifyContent='space-between' alignItems='center' mt={2}>
-          <Typography variant='h6' color='white'>
-            Presidential Candidates
-          </Typography>
-          <Select
-            value={sortBy}
-            onChange={handleSortChange}
-            displayEmpty
-            inputProps={{ 'aria-label': 'Sort By' }}
-            sx={{ color: '#fff', backgroundColor: '#3a3a6a' }}
-          >
-            <MenuItem value='President'>Sort By: President</MenuItem>
-            <MenuItem value='Votes'>Sort By: Votes</MenuItem>
-          </Select>
-        </Box>
-        <Paper>
-          <CandidateTable>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableHeader>Candidate</TableHeader>
-                  <TableHeader>ID</TableHeader>
-                  <TableHeader>Votes</TableHeader>
-                  <TableHeader align='right'>Action</TableHeader>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {[...Array(10)].map((_, index) => (
-                  <CandidateRow key={index}>
-                    <TableCell>
-                      <Box display='flex' alignItems='center'>
-                        <Avatar src='/static/images/avatar/1.jpg' sx={{ mr: 2 }} />
-                        <Typography color='white'>Xi Jinping</Typography>
-                      </Box>
-                    </TableCell>
-                    <TableCell>
-                      <Typography color='white'>{index % 2 === 0 ? 1 : 6}</Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Typography color='#E786FF'>#{index + 34500}</Typography>
-                    </TableCell>
-                    <TableCell align='right'>
-                      <VoteButton>Vote</VoteButton>
-                    </TableCell>
-                  </CandidateRow>
-                ))}
-              </TableBody>
-            </Table>
-          </CandidateTable>
-        </Paper>
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'baseline' }}>
-          <Button onClick={event => handlePageChange(event, page - 1)} disabled={page === 0} variant='contained'>
-            Previous
-          </Button>
-          <Pagination
-            count={9}
-            page={page}
-            onChange={handlePageChange}
-            hidePrevButton
-            hideNextButton
-            sx={{
-              mt: 4,
-              display: 'flex',
-              justifyContent: 'center',
-              '& .MuiPaginationItem-root': {
-                color: 'white',
-                fontSize: '1.2rem', // Slightly larger font size
-                margin: '0 8px' // Increased spacing between page numbers
-              },
-              '& .Mui-selected': {
-                color: 'white',
-                backgroundColor: 'rgba(255, 255, 255, 0.12)'
-              }
-            }}
-          />
-          <Button
-            onClick={event => handlePageChange(event, page + 1)}
-            // @TODO: Later when API is ready
-            // disabled={page >= Math.ceil(totalTableRows / rowsPerPage) - 1}
-            disabled={false}
-            variant='contained'
-          >
-            Next
-          </Button>
-        </div>
-      </MainContent>
-    </CandidateContainer>
+    <>
+      <Sidebar />
+      <CandidateContainer>
+        <MainContent>
+          <Box display='flex' justifyContent='space-between' alignItems='center' mt={2}>
+            <Typography variant='h6' color='white'>
+              Presidential Candidates
+            </Typography>
+            <Select
+              value={sortBy}
+              onChange={handleSortChange}
+              displayEmpty
+              inputProps={{ 'aria-label': 'Sort By' }}
+              sx={{ color: '#fff', backgroundColor: '#3a3a6a' }}
+            >
+              <MenuItem value='President'>Sort By: President</MenuItem>
+              <MenuItem value='Votes'>Sort By: Votes</MenuItem>
+            </Select>
+          </Box>
+          <Paper>
+            <CandidateTable>
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    <TableHeader>Candidate</TableHeader>
+                    <TableHeader>ID</TableHeader>
+                    <TableHeader>Votes</TableHeader>
+                    <TableHeader align='right'>Action</TableHeader>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {candidates.map(({ id, name, noOfVotes, imageUrl }, index) => (
+                    <CandidateRow key={index} onClick={() => navigate(`/candidates/${id}`)}>
+                      <TableCell>
+                        <Box display='flex' alignItems='center'>
+                          <Avatar src={imageUrl} sx={{ mr: 2 }} />
+                          <Typography color='white'>{name}</Typography>
+                        </Box>
+                      </TableCell>
+                      <TableCell>
+                        <Typography color='white'>{id}</Typography>
+                      </TableCell>
+                      <TableCell>
+                        <Typography color='#E786FF'>#{noOfVotes}</Typography>
+                      </TableCell>
+                      <TableCell align='right'>
+                        <VoteButton>Vote</VoteButton>
+                      </TableCell>
+                    </CandidateRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </CandidateTable>
+          </Paper>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'baseline' }}>
+            <Button
+              onClick={(event: any) => handlePageChange(event, page - 1)}
+              disabled={page === 0}
+              variant='contained'
+            >
+              Previous
+            </Button>
+            <Pagination
+              count={9}
+              page={page}
+              onChange={handlePageChange}
+              hidePrevButton
+              hideNextButton
+              sx={{
+                mt: 4,
+                display: 'flex',
+                justifyContent: 'center',
+                '& .MuiPaginationItem-root': {
+                  color: 'white',
+                  fontSize: '1.2rem', // Slightly larger font size
+                  margin: '0 8px' // Increased spacing between page numbers
+                },
+                '& .Mui-selected': {
+                  color: 'white',
+                  backgroundColor: 'rgba(255, 255, 255, 0.12)'
+                }
+              }}
+            />
+            <Button
+              onClick={(event: any) => handlePageChange(event, page + 1)}
+              // @TODO: Later when API is ready
+              // disabled={page >= Math.ceil(totalTableRows / rowsPerPage) - 1}
+              disabled={false}
+              variant='contained'
+            >
+              Next
+            </Button>
+          </div>
+        </MainContent>
+      </CandidateContainer>
+    </>
   )
 }

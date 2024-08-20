@@ -30,7 +30,7 @@ function CardMida({ num, path }: { num: number; path: string }) {
             m: '10px 10px 20px 0px'
           }}
         >
-          Lizard
+          Candidate
         </Typography>
 
         <Typography

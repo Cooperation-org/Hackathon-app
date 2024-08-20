@@ -4,8 +4,10 @@ import Image1 from '../assets/image 3.svg'
 import Image2 from '../assets/image 4.svg'
 import Footer from '../Component/Footer'
 import Navbar from '../Component/Navbar'
+import { useNavigate } from 'react-router-dom'
 
 function HomePage() {
+  const navigate = useNavigate()
   return (
     <Box sx={{ display: 'flex', width: '100vw', height: '100vh', overflow: 'hidden' }}>
       <Box
@@ -173,6 +175,7 @@ function HomePage() {
                 boxShadow: '0 4px 10px rgba(0, 0, 0, 0.3)',
                 background: 'linear-gradient(-81.98deg, #e166ff, #b504e1)'
               }}
+              onClick={() => navigate('/login')}
             >
               <Typography sx={{ fontSize: '14px', fontFamily: 'Inter, sans-serif', fontWeight: '100' }}>
                 Get Involved

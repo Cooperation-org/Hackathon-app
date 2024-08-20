@@ -14,6 +14,7 @@ import {
 } from '@mui/material'
 import LockOutlined from '@mui/icons-material/LockOutlined'
 import { styled } from '@mui/material/styles'
+import { useNavigate } from 'react-router-dom'
 
 const LoginContainer = styled(Container)(({ theme }) => ({
   display: 'flex',
@@ -79,6 +80,8 @@ const LabelTypography = styled(Typography)(({ theme }) => ({
 }))
 
 export const LoginForm = () => {
+  const navigate = useNavigate()
+
   const [walletAddress, setWalletAddress] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
@@ -168,7 +171,7 @@ export const LoginForm = () => {
               }}
             />
           </LoginField>
-          <LoginButton type='submit' fullWidth variant='contained'>
+          <LoginButton type='submit' fullWidth variant='contained' onClick={() => navigate('/dashboard')}>
             Login
           </LoginButton>
           <Box
