@@ -1,10 +1,11 @@
 const { Client, TopicCreateTransaction } = require("@hashgraph/sdk");
-require('dotenv').config(); 
+const { HEDERA_ACCOUNT_ID, HEDERA_PRIVATE_KEY } = require("./environment");
+require("dotenv").config();
 
 async function createTopic() {
     // Configure client to connect to the Hedera testnet
     const client = Client.forTestnet();
-    client.setOperator(process.env.HEDERA_ACCOUNT_ID, process.env.HEDERA_PRIVATE_KEY);
+    client.setOperator(HEDERA_ACCOUNT_ID, HEDERA_PRIVATE_KEY);
 
     // Create the topic
     const transaction = new TopicCreateTransaction();
