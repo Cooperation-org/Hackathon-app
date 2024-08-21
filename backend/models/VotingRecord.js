@@ -1,3 +1,5 @@
+const mongoose = require('mongoose');
+
 const VotingRecordSchema = new mongoose.Schema({
     did: { type: String, required: true },
     candidateId: { type: mongoose.Schema.Types.ObjectId, ref: 'Election', required: true },
