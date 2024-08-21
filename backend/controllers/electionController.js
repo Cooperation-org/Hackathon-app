@@ -1,5 +1,4 @@
 const Election = require('../models/Election');
-const Election = require('../models/Election');
 const VotingRecord = require('../models/VotingRecord');
 const { voteOnBlockchain } = require('../utils/hedera');
 
